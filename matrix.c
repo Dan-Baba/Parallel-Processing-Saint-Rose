@@ -1,24 +1,38 @@
 #include <stdio.h>
 #include<pthread.h>
-#define NUM_ROWS 2
-#define NUM_COLS 2
+#define NUM_ROWS 9
+#define NUM_COLS 9
 #define NUM_CELLS NUM_ROWS*NUM_COLS
 
 struct row_column {
     int row;
     int column;
 };
-int arrA[2][2] = {
-    {1, 2},
-    {3, 4}
+int arrA[9][9] = {
+    {5, 6, 8, 9, 10, 17, 16, 5, 8},
+    {7, 8, 8, 9, 11, 18, 90, 3, 4},
+    {5, 6, 8, 9, 10, 17, 16, 5, 8},
+    {7, 8, 8, 9, 11, 18, 90, 3, 4},
+    {5, 6, 8, 9, 10, 17, 16, 5, 8},
+    {7, 8, 8, 9, 11, 18, 90, 3, 4},
+    {5, 6, 8, 9, 10, 17, 16, 5, 8},
+    {7, 8, 8, 9, 11, 18, 90, 3, 4},
+    {5, 6, 8, 9, 10, 17, 16, 5, 8},
 };
-int arrB[2][2] = {
-    {5, 6},
-    {7, 8}
+int arrB[9][9] = {
+    {5, 6, 8, 9, 10, 17, 16, 5, 8},
+    {7, 8, 8, 9, 11, 18, 90, 3, 4},
+    {5, 6, 8, 9, 10, 17, 16, 5, 8},
+    {7, 8, 8, 9, 11, 18, 90, 3, 4},
+    {5, 6, 8, 9, 10, 17, 16, 5, 8},
+    {7, 8, 8, 9, 11, 18, 90, 3, 4},
+    {5, 6, 8, 9, 10, 17, 16, 5, 8},
+    {7, 8, 8, 9, 11, 18, 90, 3, 4},
+    {5, 6, 8, 9, 10, 17, 16, 5, 8},
 };
-int arrC[2][2];
+int arrC[9][9];
 
-void printMatrix(int array[2][2]);
+void printMatrix(int array[NUM_ROWS][NUM_COLS]);
 void *DotProduct(void *arguments);
 int main() {
     pthread_t threads[NUM_CELLS];
@@ -47,9 +61,9 @@ int main() {
     pthread_exit(NULL);
 }
 
-void printMatrix(int array[2][2]) {
-    for (int i = 0; i < 2; i++) {
-        for (int j = 0; j < 2; j++) {
+void printMatrix(int array[NUM_ROWS][NUM_COLS]) {
+    for (int i = 0; i < NUM_ROWS; i++) {
+        for (int j = 0; j < NUM_COLS; j++) {
             printf("%d ", array[i][j]);
         }
         printf("\n");
