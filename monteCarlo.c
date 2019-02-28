@@ -7,6 +7,8 @@
 #define NUM_POINTS 1500000000
 #define NUM_THREADS 12
 
+long numHits[NUM_THREADS];
+
 void *throwDarts(void *id);
 double mytime();
 int main() {
@@ -24,9 +26,8 @@ int main() {
   // Collect results
   long totalHits = 0;
   for (int i = 0; i < NUM_THREADS; i++) {
-    void *hits;
-    pthread_join(threads[i], &hits);
-    totalHits += (long)hits;
+    pthread_join(threads[i], NULL);
+    totalHits += numHits[i];
   }
 
   double piEstimation = ((double)totalHits / (double)NUM_POINTS) * 4.0;
@@ -46,6 +47,7 @@ void *throwDarts(void *id) {
   printf("Thread #%d: %d throws.\n", tid, throws);
 
   long hits = 0;
+  // Generating a seed that's unique this this thread.
   unsigned int seed = time(NULL) * tid;
   for (int i = 0; i < throws; i++) {
     double x = (double)rand_r(&seed) / RAND_MAX;
@@ -55,7 +57,8 @@ void *throwDarts(void *id) {
     }
   }
 
-  pthread_exit((void *)hits);
+  numHits[tid] = hits;
+  pthread_exit(NULL);
 }
 
 double mytime() {
