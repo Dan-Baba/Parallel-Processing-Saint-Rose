@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include<pthread.h>
+#include <pthread.h>
 #define NUM_ROWS 9
 #define NUM_COLS 9
 #define NUM_CELLS NUM_ROWS*NUM_COLS
