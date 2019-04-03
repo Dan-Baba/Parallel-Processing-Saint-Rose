@@ -41,8 +41,8 @@ void *Plane(void *threadid) {
         }
         pthread_mutex_unlock(&clearance_mutex);
 
-        // Generate random number between 1 - 3, this is the flight-time.
-        int flight_time = (rand_r(&seed) % 3) + 1;
+        // Generate random number between 2 - 5, this is the flight-time.
+        int flight_time = (rand_r(&seed) % 4) + 2;
         printf("Thread #%ld, leg #%d, flight-time %d\n", tid, (i + 1), flight_time);
         sleep(flight_time);
         pthread_mutex_lock(&clearance_mutex);
