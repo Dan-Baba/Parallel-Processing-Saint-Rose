@@ -22,6 +22,6 @@ int main(int argc, char *argv[]) {
   }
 
   rc = MPI_Get_count(&Stat, MPI_CHAR, &count);
-  printf("Task %d: Received %d char(s) from task %d with tag %d \n", rank, count, Stat.MPI_SOURCE, Stat.MPI_TAG);
+  printf("Task %d: Received %d char(s) char: %c from task %d with tag %d \n", rank, count, inmsg, Stat.MPI_SOURCE, Stat.MPI_TAG);
   MPI_Finalize();
 }
